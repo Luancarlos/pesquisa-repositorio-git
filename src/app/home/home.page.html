@@ -1,14 +1,33 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Ionic Blank
+      Github
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content id="home">
+  <ion-searchbar placeholder="Ex: ionic, java, nodejs" [(ngModel)]="textSearch"></ion-searchbar>
+  <ion-card *ngFor="let rep of repositorios">
+    <ion-card-header>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img [src]="rep.owner.avatar_url">
+          </ion-avatar>
+          <ion-label>
+            {{rep.full_name}}
+          </ion-label>
+        </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{rep.description}}</p>
+      <ion-badge color="dark">{{rep.language}}</ion-badge>&nbsp;
+      <ion-badge color="dark">{{rep.default_branch}}</ion-badge>
+    </ion-card-content>
+  
+  </ion-card>
+  
 </ion-content>
+<ion-footer>
+  <ion-button expand="block" color="success" (click)="pesquisar()">Pesquisar</ion-button>
+</ion-footer>
